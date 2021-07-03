@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import Cookies from 'universal-cookie';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import PostsList from '../components/PostsList';
 
 const cookies = new Cookies();
-
+const jwt = cookies.get('jwt');
 class Dashboard extends Component {
+
     logout=()=>{
         cookies.remove('userId', {path: "/"});
         cookies.remove('jwt', {path: "/"});
@@ -12,7 +14,7 @@ class Dashboard extends Component {
     }
 
     componentDidMount() {
-        if(!cookies.get('jwt')){
+        if(!jwt){
             window.location.href="./";
         }
     }
@@ -20,9 +22,14 @@ class Dashboard extends Component {
     render() {
         return (
             <div>
-                <h2>My Posts and Photos</h2>
-                <br />
-                <button className="btn btn-primary" onClick={()=>this.logout()}>Logout</button>
+                <nav className="navbar navbar-light bg-light">
+                    <div className="navbar-brand">
+                        Welcome to your dasboard with posts and photos
+                    </div>
+                    <button className="btn btn-primary" onClick={()=>this.logout()}>Logout</button>
+                </nav>
+                <PostsList/>
+                <div></div>
             </div>
         );
     }

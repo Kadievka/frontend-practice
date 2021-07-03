@@ -32,8 +32,6 @@ class Login extends Component {
                 email: this.state.form.email,
                 password: this.state.form.password
             });
-            console.log("aqui estoy")
-            console.log(response)
             if(response.data.success && response.data.data){
                 const data = response.data.data;
                 cookies.set('userId', data._id, {path: "/"});
