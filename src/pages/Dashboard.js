@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Cookies from 'universal-cookie';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import PostsList from '../components/PostsList';
+import PhotosPagination from '../components/PhotosPagination';
 
 const cookies = new Cookies();
 const jwt = cookies.get('jwt');
@@ -28,8 +29,8 @@ class Dashboard extends Component {
                     </div>
                     <button className="btn btn-primary" onClick={()=>this.logout()}>Logout</button>
                 </nav>
-                <PostsList/>
-                <div></div>
+                <PostsList jwt={jwt}/>
+                <PhotosPagination jwt={jwt} pageNumber={this.props.match.params.pageNumber}/>
             </div>
         );
     }

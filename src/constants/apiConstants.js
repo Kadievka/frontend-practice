@@ -3,6 +3,7 @@ const apiConstants = {
     USER: "/user",
     LOGIN: "/login",
     POSTS: "/posts",
+    PHOTOS: "/photos",
     BEARER: "Bearer"
 }
 

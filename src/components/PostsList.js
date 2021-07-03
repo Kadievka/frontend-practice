@@ -1,15 +1,13 @@
 import React, {useEffect, useState} from 'react';
 import axios from 'axios';
 import apiConstants from "../constants/apiConstants";
-import Cookies from 'universal-cookie';
-
-const cookies = new Cookies();
-const jwt = cookies.get('jwt');
 
 const getPostsUrl = apiConstants.API_URL + apiConstants.POSTS;
 const postsError = new Error('Can not get posts');
 
-function PostsList() {
+function PostsList(props) {
+
+    const jwt = props.jwt;
 
     const [posts, setPosts] = useState([]);
 
