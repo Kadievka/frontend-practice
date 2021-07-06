@@ -5,7 +5,7 @@ import axios from 'axios';
 import apiConstants from "../constants/apiConstants";
 import Cookies from 'universal-cookie';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { 
+import {
     faHome,
     faSignInAlt
 } from '@fortawesome/free-solid-svg-icons';
@@ -17,30 +17,17 @@ const errorMessage = (message)=> new Error(message || 'Please, verify the inputs
 
 class Login extends Component {
     state={
-        loginForm:{
-            email: '',
-            password: ''
-        },
-        registerForm:{
+        form:{
             email: '',
             password: '',
             confirmPassword: ''
         }
     }
 
-    handleRegisterChange= async e=>{
+    handleChange= async e=>{
         await this.setState({
-            registerForm:{
-                ...this.state.registerForm,
-                [e.target.name]: e.target.value
-            }
-        });
-    }
-
-    handleLoginChange= async e=>{
-        await this.setState({
-            loginForm:{
-                ...this.state.loginForm,
+            form:{
+                ...this.state.form,
                 [e.target.name]: e.target.value
             }
         });
@@ -48,8 +35,8 @@ class Login extends Component {
 
     loginRequest = async()=>{
         await axios.post(loginRoute, {
-            email: this.state.loginForm.email,
-            password: this.state.loginForm.password
+            email: this.state.form.email,
+            password: this.state.form.password
         }).then((response)=>{
             if(response.data.success && response.data.data){
                 const data = response.data.data;
@@ -67,9 +54,9 @@ class Login extends Component {
 
     signInRequest = async()=>{
         await axios.post(userRoute, {
-            email: this.state.registerForm.email,
-            password: this.state.registerForm.password,
-            confirmPassword: this.state.registerForm.confirmPassword
+            email: this.state.form.email,
+            password: this.state.form.password,
+            confirmPassword: this.state.form.confirmPassword
         }).then((response)=>{
             if(response.data.success && response.data.data){
                 const data = response.data.data;
@@ -91,16 +78,16 @@ class Login extends Component {
 
     render(){
         return (
-            <div className="container mainContainer ">
-                <div className="row secondContainer">
-                    <div className="col-md-5 form-group form">
+            <div className="mainContainer">
+                <div className="secondContainer">
+                    <div className="form-group form">
                         <label>Email: </label>
                         <br />
                         <input
                             type="text"
                             className="form-control"
                             name="email"
-                            onChange={this.handleRegisterChange}
+                            onChange={this.handleChange}
                         />
                         <br />
                         <label>Password: </label>
@@ -109,45 +96,26 @@ class Login extends Component {
                             type="password"
                             className="form-control"
                             name="password"
-                            onChange={this.handleRegisterChange}
+                            onChange={this.handleChange}
                         />
                         <br />
-                        <label>Confirm Password: </label>
+                        <label>Confirm Password (Sign In): </label>
                         <br />
                         <input
                             type="password"
                             className="form-control"
                             name="confirmPassword"
-                            onChange={this.handleRegisterChange}
+                            onChange={this.handleChange}
                         />
                         <br />
-                        <button className="btn btn-primary" onClick={()=> this.signInRequest()}>
-                            Sing In <FontAwesomeIcon icon={faSignInAlt} />
-                        </button>
-                    </div>
-                    <div className="col-md-2"></div>
-                    <div className="col-md-5 form-group form">
-                        <label>Email: </label>
-                        <br />
-                        <input
-                        type="text"
-                        className="form-control"
-                        name="email"
-                        onChange={this.handleLoginChange}
-                        />
-                        <br />
-                        <label>Password: </label>
-                        <br />
-                        <input
-                        type="password"
-                        className="form-control"
-                        name="password"
-                        onChange={this.handleLoginChange}
-                        />
-                        <br />
-                        <button className="btn btn-primary" onClick={()=> this.loginRequest()}>
-                            Login <FontAwesomeIcon icon={faHome} />
-                        </button>
+                        <div className="list-group-horizontal">
+                            <button className="btn btn-primary" style={{"marginRight": "1em"}} onClick={()=> this.signInRequest()}>
+                                Sing In <FontAwesomeIcon icon={faSignInAlt} />
+                            </button>
+                            <button className="btn btn-primary" onClick={()=> this.loginRequest()}>
+                                Login <FontAwesomeIcon icon={faHome} />
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
