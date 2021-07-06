@@ -1,5 +1,5 @@
 const apiConstants = {
-    API_URL: "http://localhost:4000/jsonplaceholder.typicode.com",
+    API_URL: "http://localhost:4000",
     USER: "/user",
     LOGIN: "/login",
     POSTS: "/posts",

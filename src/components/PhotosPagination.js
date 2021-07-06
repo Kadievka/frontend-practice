@@ -45,7 +45,7 @@ function PhotosPagination(props) {
     }, {});
 
     const handleClick = (currentPage)=>{
-        window.location.href=`/post-photos/page/${currentPage}`;
+        window.location.href=`/photos/page/${currentPage}`;
     }
 
     return(

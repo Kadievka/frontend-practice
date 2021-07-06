@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import Cookies from 'universal-cookie';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import PostsList from '../components/PostsList';
 import PhotosPagination from '../components/PhotosPagination';
+import Header from '../components/Header';
 
 const cookies = new Cookies();
 const jwt = cookies.get('jwt');
-class Dashboard extends Component {
+class Photos extends Component {
 
     logout=()=>{
         cookies.remove('userId', {path: "/"});
@@ -23,17 +23,11 @@ class Dashboard extends Component {
     render() {
         return (
             <div>
-                <nav className="navbar navbar-light bg-light">
-                    <div className="navbar-brand">
-                        Welcome to your dasboard with posts and photos
-                    </div>
-                    <button className="btn btn-primary" onClick={()=>this.logout()}>Logout</button>
-                </nav>
-                <PostsList jwt={jwt}/>
+                <Header />
                 <PhotosPagination jwt={jwt} pageNumber={this.props.match.params.pageNumber}/>
             </div>
         );
     }
 }
 
-export default Dashboard;
+export default Photos;

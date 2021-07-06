@@ -1,15 +1,20 @@
 import React from 'react';
 import {BrowserRouter, Switch, Route, Redirect} from 'react-router-dom';
 import Login from '../pages/Login';
-import Dashboard from '../pages/Dashboard';
+import Posts from '../pages/Posts';
+import Photos from '../pages/Photos';
 
 function Router() {
   return (
     <BrowserRouter>
       <Switch>
-        <Redirect from="/post-photos/page/1" to="/post-photos" />
-        <Route path="/post-photos/page/:pageNumber" component={Dashboard} />
-        <Route path="/post-photos" component={Dashboard}/>
+
+        <Redirect from="/photos/page/1" to="/photos" />
+        <Route path="/photos/page/:pageNumber" component={Photos} />
+        <Route path="/photos" component={Photos}/>
+
+        <Route path="/posts" component={Posts}/>
+
         <Route exact path="/" component={Login}/>
       </Switch>
     </BrowserRouter>

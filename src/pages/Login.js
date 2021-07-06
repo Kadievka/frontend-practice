@@ -36,7 +36,7 @@ class Login extends Component {
                 const data = response.data.data;
                 cookies.set('userId', data._id, {path: "/"});
                 cookies.set('jwt', data.jwt, {path: "/"});
-                window.location.href="./post-photos";
+                window.location.href="./posts";
             }else{
                 throw invalidUserError;
             }
@@ -47,7 +47,7 @@ class Login extends Component {
 
     componentDidMount() {
         if(cookies.get('jwt')){
-            window.location.href="./post-photos";
+            window.location.href="./posts";
         }
     }
 
