@@ -80,40 +80,40 @@ class Login extends Component {
         return (
             <div className="mainContainer">
                 <div className="secondContainer row container">
-                    <div className="backgroundImage col-md-8"></div>
+                    <div className="backgroundImage col-md-7"></div>
                     <div className="form-group form col-md-4 col-sm-12">
-                        <label>Email: </label>
+                        <label className="label-login">Email: </label>
                         <br />
                         <input
                             type="text"
-                            className="form-control"
+                            className="form-control shadow-login"
                             name="email"
                             onChange={this.handleChange}
                         />
                         <br />
-                        <label>Password: </label>
+                        <label className="label-login">Password: </label>
                         <br />
                         <input
                             type="password"
-                            className="form-control"
+                            className="form-control shadow-login"
                             name="password"
                             onChange={this.handleChange}
                         />
                         <br />
-                        <label>Confirm Password (Sign In): </label>
+                        <label className="label-login">Confirm Password (Sign Up): </label>
                         <br />
                         <input
                             type="password"
-                            className="form-control"
+                            className="form-control shadow-login"
                             name="confirmPassword"
                             onChange={this.handleChange}
                         />
                         <br />
                         <div className="list-group-horizontal">
-                            <button className="btn btn-primary" style={{"marginRight": "1em"}} onClick={()=> this.signInRequest()}>
-                                Sing In <FontAwesomeIcon icon={faSignInAlt} />
+                            <button className="btn btn-primary shadow-login" style={{"marginRight": "1em"}} onClick={()=> this.signInRequest()}>
+                                Sing Up <FontAwesomeIcon icon={faSignInAlt} />
                             </button>
-                            <button className="btn btn-primary" onClick={()=> this.loginRequest()}>
+                            <button className="btn btn-primary shadow-login" onClick={()=> this.loginRequest()}>
                                 Login <FontAwesomeIcon icon={faHome} />
                             </button>
                         </div>

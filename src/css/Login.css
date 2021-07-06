@@ -8,6 +8,7 @@
     padding: 40px;
     background-image: linear-gradient(rgb(53, 55, 175), rgba(255, 255, 255, 0));
     display: flex;
+    justify-content: center;
 }
 
 .secondContainer{
@@ -15,15 +16,26 @@
 }
 
 .backgroundImage{
-    background-image: url("./graphic-enjoy-a-coffee-vector.jpg");
-    background-repeat: no-repeat;
+    margin-right: 40px;
+    background: white url("./graphic-enjoy-a-coffee-vector.jpg") no-repeat center;
     background-size: contain;
+    border-radius: 50%;
+    box-shadow: 2px 2px 10px #000000;
 }
 
 .form{
+    margin-left: 40px;
     align-self: center;
-    padding: 1em;
-    padding-left: 2em;
     color: mintcream;
     font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
+
+.label-login {
+    color: white;
+    text-shadow: 2px 2px 4px #000000;
+}
+
+.shadow-login {
+    box-shadow: 2px 2px 10px #000000;
+}
+
