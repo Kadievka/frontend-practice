@@ -15,7 +15,7 @@ class Header extends Component {
     logout=()=>{
         cookies.remove('userId', {path: "/"});
         cookies.remove('jwt', {path: "/"});
-        window.location.href='./';
+        window.location.href='/';
     }
 
     goToPhotos=()=>{
@@ -28,7 +28,7 @@ class Header extends Component {
 
     componentDidMount() {
         if(!jwt){
-            window.location.href="./";
+            window.location.href="/";
         }
     }
 
