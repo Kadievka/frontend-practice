@@ -8,18 +8,6 @@ const cookies = new Cookies();
 const jwt = cookies.get('jwt');
 class Photos extends Component {
 
-    logout=()=>{
-        cookies.remove('userId', {path: "/"});
-        cookies.remove('jwt', {path: "/"});
-        window.location.href='./';
-    }
-
-    componentDidMount() {
-        if(!jwt){
-            window.location.href="./";
-        }
-    }
-
     render() {
         return (
             <div>
