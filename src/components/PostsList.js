@@ -11,48 +11,47 @@ function PostsList(props) {
 
     const [posts, setPosts] = useState([]);
 
-    const getPostsRequest = async()=>{
-        try {
-            const response = await axios.get(getPostsUrl, {
-                headers: {
-                    authorization: `${apiConstants.BEARER} ${jwt}`
-                }
-            });
-            if(response.data.success && response.data.data){
-                setPosts(response.data.data);
-            }else{
-                throw postsError;
-            }
-        } catch (error) {
-            alert(postsError);
-        }
-    }
-
     useEffect(() => {
+        const getPostsRequest = async()=>{
+            try {
+                const response = await axios.get(getPostsUrl, {
+                    headers: {
+                        authorization: `${apiConstants.BEARER} ${jwt}`
+                    }
+                });
+                if(response.data.success && response.data.data){
+                    setPosts(response.data.data);
+                }else{
+                    throw postsError;
+                }
+            } catch (error) {
+                alert(postsError);
+            }
+        }
         getPostsRequest();
-    }, [])
+    }, [jwt])
 
     return(
-        <div className="list-group">
-            <a key="1" href="#" className="list-group-item list-group-item-action flex-column align-items-start active">
+        <ul className="list-group">
+            <li key="0" href="#" className="list-group-item list-group-item-action flex-column align-items-start active">
                 <div className="d-flex w-100 justify-content-between">
                 <h5 className="mb-1">Here is the title of the post</h5>
                 <small>This is the # _id</small>
                 </div>
                 <p className="mb-1">Then you find the message.</p>
-            </a>
+            </li>
             {
                 posts.map(post=>(
-                    <a key={post._id} href="#" className="list-group-item list-group-item-action flex-column align-items-start">
+                    <li key={post._id} href="#" className="list-group-item list-group-item-action flex-column align-items-start">
                         <div className="d-flex w-100 justify-content-between">
                         <h5 className="mb-1">{post.title}</h5>
                         <small className="text-muted">{post._id}</small>
                         </div>
                         <p className="mb-1">{post.message}</p>
-                    </a>
+                    </li>
                 ))
             }
-        </div>
+        </ul>
     )
 }
 

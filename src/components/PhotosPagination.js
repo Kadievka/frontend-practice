@@ -23,26 +23,25 @@ function PhotosPagination(props) {
         page: pageNumber
     });
 
-    const getPhotosRequest = async()=>{
-        try {
-            const response = await axios.get(getPhotosUrl, {
-                headers: {
-                    authorization: `${apiConstants.BEARER} ${jwt}`
-                },
-            });
-            if(response.data.success && response.data.data){
-                setPhotos(response.data.data);
-            }else{
-                throw photosError;
-            }
-        } catch (error) {
-            alert(photosError);
-        }
-    }
-
     useEffect(() => {
+        const getPhotosRequest = async()=>{
+            try {
+                const response = await axios.get(getPhotosUrl, {
+                    headers: {
+                        authorization: `${apiConstants.BEARER} ${jwt}`
+                    },
+                });
+                if(response.data.success && response.data.data){
+                    setPhotos(response.data.data);
+                }else{
+                    throw photosError;
+                }
+            } catch (error) {
+                alert(photosError);
+            }
+        }
         getPhotosRequest();
-    }, {});
+    }, [getPhotosUrl, jwt]);
 
     const handleClick = (currentPage)=>{
         window.location.href=`/photos/page/${currentPage}`;
