@@ -13,9 +13,11 @@ const jwt = cookies.get('jwt');
 class Header extends Component {
 
     logout=()=>{
-        cookies.remove('userId', {path: "/"});
-        cookies.remove('jwt', {path: "/"});
-        window.location.href='/';
+        if(window.confirm("Are you sure yo want to exit?")){
+            cookies.remove('userId', {path: "/"});
+            cookies.remove('jwt', {path: "/"});
+            window.location.href='/';
+        }
     }
 
     goToPhotos=()=>{
