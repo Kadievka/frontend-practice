@@ -49,11 +49,6 @@ function PhotosPagination(props) {
 
     return(
         <div className="row d-flex justify-content-center">
-            {
-                data.docs.map(photo=>(
-                    <PhotoCard photo={photo} key={photo._id} />
-                ))
-            }
             <Pagination 
             style={
                 {
@@ -69,6 +64,11 @@ function PhotosPagination(props) {
                 onChange={(e, currentPage) => handleClick(currentPage)}
                 size="large"
             />
+            {
+                data.docs.map(photo=>(
+                    <PhotoCard photo={photo} key={photo._id} />
+                ))
+            }
         </div>
     )
 
