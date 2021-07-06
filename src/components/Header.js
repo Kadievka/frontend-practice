@@ -1,6 +1,12 @@
 import React, { Component } from 'react';
 import Cookies from 'universal-cookie';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { 
+    faImage,
+    faNewspaper
+} from '@fortawesome/free-solid-svg-icons';
+import '../css/Header.css';
 
 const cookies = new Cookies();
 const jwt = cookies.get('jwt');
@@ -13,11 +19,11 @@ class Header extends Component {
     }
 
     goToPhotos=()=>{
-        window.location.href='./photos';
+        window.location.href="/photos";
     }
 
     goToPosts=()=>{
-        window.location.href='./posts';
+        window.location.href="/posts";
     }
 
     componentDidMount() {
@@ -32,9 +38,17 @@ class Header extends Component {
                 <div className="navbar-brand">
                     Welcome to your dashboard
                 </div>
-                <button className="btn btn-info" onClick={()=>this.goToPhotos()}>Photos</button>
-                <button className="btn btn-info" onClick={()=>this.goToPosts()}>Posts</button>
-                <button className="btn btn-primary" onClick={()=>this.logout()}>Logout</button>
+                <div className="navbar-toggler">
+                <button className="btn btn-info buttons-nav-bar" onClick={()=>this.goToPhotos()}>
+                    Photos <FontAwesomeIcon icon={faImage} />
+                </button>
+                <button className="btn btn-info buttons-nav-bar" onClick={()=>this.goToPosts()}>
+                    Posts <FontAwesomeIcon icon={faNewspaper} />
+                </button>
+                <button className="btn btn-primary" onClick={()=>this.logout()}>
+                    Logout
+                </button>
+                </div>
             </nav>
         );
     }

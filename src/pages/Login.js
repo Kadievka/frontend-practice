@@ -5,22 +5,38 @@ import axios from 'axios';
 import apiConstants from "../constants/apiConstants";
 import Cookies from 'universal-cookie';
 
-const baseUrl = apiConstants.API_URL + apiConstants.USER + apiConstants.LOGIN;
+const userRoute = apiConstants.API_URL + apiConstants.USER
+const loginRoute = userRoute + apiConstants.LOGIN;
 const cookies = new Cookies();
-const invalidUserError = new Error('Invalid email or password');
+const invalidLoginError = new Error('Invalid email or password');
+const invalidSingInError = (message)=> new Error(message || 'Please, verify the inputs you are sending in the register');
 
 class Login extends Component {
     state={
-        form:{
+        loginForm:{
             email: '',
             password: ''
+        },
+        registerForm:{
+            email: '',
+            password: '',
+            confirmPassword: ''
         }
     }
 
-    handleChange= async e=>{
+    handleRegisterChange= async e=>{
         await this.setState({
-            form:{
-                ...this.state.form,
+            registerForm:{
+                ...this.state.registerForm,
+                [e.target.name]: e.target.value
+            }
+        });
+    }
+
+    handleLoginChange= async e=>{
+        await this.setState({
+            loginForm:{
+                ...this.state.loginForm,
                 [e.target.name]: e.target.value
             }
         });
@@ -28,9 +44,9 @@ class Login extends Component {
 
     loginRequest = async()=>{
         try {
-            const response = await axios.post(baseUrl, {
-                email: this.state.form.email,
-                password: this.state.form.password
+            const response = await axios.post(loginRoute, {
+                email: this.state.loginForm.email,
+                password: this.state.loginForm.password
             });
             if(response.data.success && response.data.data){
                 const data = response.data.data;
@@ -38,11 +54,29 @@ class Login extends Component {
                 cookies.set('jwt', data.jwt, {path: "/"});
                 window.location.href="./posts";
             }else{
-                throw invalidUserError;
+                throw invalidLoginError;
             }
         } catch (error) {
-            alert(invalidUserError);
+            alert(invalidLoginError);
         }
+    }
+
+    signInRequest = async()=>{
+        await axios.post(userRoute, {
+            email: this.state.registerForm.email,
+            password: this.state.registerForm.password,
+            confirmPassword: this.state.registerForm.confirmPassword
+        }).then((response)=>{
+            if(response.data.success && response.data.data){
+                const data = response.data.data;
+                alert(`Success!! registered email: ${data.email}`);
+            }else{
+                throw invalidSingInError;
+            }
+        }).catch((error)=>{
+            const message = error.response.data.message;
+            alert(invalidSingInError(message));
+        });
     }
 
     componentDidMount() {
@@ -53,29 +87,60 @@ class Login extends Component {
 
     render(){
         return (
-            <div className="mainContainer">
-                <div className="secondContainer">
-                <div className="form-group">
-                    <label>Email: </label>
-                    <br />
-                    <input
-                    type="text"
-                    className="form-control"
-                    name="email"
-                    onChange={this.handleChange}
-                    />
-                    <br />
-                    <label>Password: </label>
-                    <br />
-                    <input
-                    type="password"
-                    className="form-control"
-                    name="password"
-                    onChange={this.handleChange}
-                    />
-                    <br />
-                    <button className="btn btn-primary" onClick={()=> this.loginRequest()}>Login</button>
-                </div>
+            <div className="container mainContainer ">
+                <div className="row secondContainer">
+                    <div className="col-md-5 form-group form">
+                        <label>Email: </label>
+                        <br />
+                        <input
+                            type="text"
+                            className="form-control"
+                            name="email"
+                            onChange={this.handleRegisterChange}
+                        />
+                        <br />
+                        <label>Password: </label>
+                        <br />
+                        <input
+                            type="password"
+                            className="form-control"
+                            name="password"
+                            onChange={this.handleRegisterChange}
+                        />
+                        <br />
+                        <label>Confirm Password: </label>
+                        <br />
+                        <input
+                            type="password"
+                            className="form-control"
+                            name="confirmPassword"
+                            onChange={this.handleRegisterChange}
+                        />
+                        <br />
+                        <button className="btn btn-primary" onClick={()=> this.signInRequest()}>SignIn</button>
+                    </div>
+                    <div className="col-md-2"></div>
+                    <div className="col-md-5 form-group form">
+                        <label>Email: </label>
+                        <br />
+                        <input
+                        type="text"
+                        className="form-control"
+                        name="email"
+                        onChange={this.handleLoginChange}
+                        />
+                        <br />
+                        <label>Password: </label>
+                        <br />
+                        <input
+                        type="password"
+                        className="form-control"
+                        name="password"
+                        onChange={this.handleLoginChange}
+                        />
+                        <br />
+                        <button className="btn btn-primary" onClick={()=> this.loginRequest()}>Login</button>
+                    </div>
                 </div>
             </div>
         );
