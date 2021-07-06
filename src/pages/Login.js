@@ -79,8 +79,9 @@ class Login extends Component {
     render(){
         return (
             <div className="mainContainer">
-                <div className="secondContainer">
-                    <div className="form-group form">
+                <div className="secondContainer row container">
+                    <div className="backgroundImage col-md-8"></div>
+                    <div className="form-group form col-md-4 col-sm-12">
                         <label>Email: </label>
                         <br />
                         <input

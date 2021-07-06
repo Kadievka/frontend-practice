@@ -8,18 +8,22 @@
     padding: 40px;
     background-image: linear-gradient(rgb(53, 55, 175), rgba(255, 255, 255, 0));
     display: flex;
-    justify-content: center;
 }
 
 .secondContainer{
     text-align: center;
-    justify-self: center;
-    align-self: center;
+}
+
+.backgroundImage{
+    background-image: url("./graphic-enjoy-a-coffee-vector.jpg");
+    background-repeat: no-repeat;
+    background-size: contain;
 }
 
 .form{
-    border: 1px solid blue;
+    align-self: center;
     padding: 1em;
+    padding-left: 2em;
     color: mintcream;
     font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
