@@ -4,7 +4,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { 
     faImage,
-    faNewspaper
+    faNewspaper,
+    faSignOutAlt
 } from '@fortawesome/free-solid-svg-icons';
 import '../css/Header.css';
 
@@ -13,7 +14,7 @@ const jwt = cookies.get('jwt');
 class Header extends Component {
 
     logout=()=>{
-        if(window.confirm("Are you sure yo want to exit?")){
+        if(window.confirm("Are you sure you want to exit?")){
             cookies.remove('userId', {path: "/"});
             cookies.remove('jwt', {path: "/"});
             window.location.href='/';
@@ -48,7 +49,7 @@ class Header extends Component {
                     Posts <FontAwesomeIcon icon={faNewspaper} />
                 </button>
                 <button className="btn btn-primary" onClick={()=>this.logout()}>
-                    Logout
+                    Logout <FontAwesomeIcon icon={faSignOutAlt} />
                 </button>
                 </div>
             </nav>
