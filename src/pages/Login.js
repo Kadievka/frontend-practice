@@ -4,12 +4,16 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import axios from 'axios';
 import apiConstants from "../constants/apiConstants";
 import Cookies from 'universal-cookie';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { 
+    faHome,
+    faSignInAlt
+} from '@fortawesome/free-solid-svg-icons';
 
 const userRoute = apiConstants.API_URL + apiConstants.USER
 const loginRoute = userRoute + apiConstants.LOGIN;
 const cookies = new Cookies();
-const invalidLoginError = new Error('Invalid email or password');
-const invalidSingInError = (message)=> new Error(message || 'Please, verify the inputs you are sending in the register');
+const errorMessage = (message)=> new Error(message || 'Please, verify the inputs you are sending in the form');
 
 class Login extends Component {
     state={
@@ -43,22 +47,22 @@ class Login extends Component {
     }
 
     loginRequest = async()=>{
-        try {
-            const response = await axios.post(loginRoute, {
-                email: this.state.loginForm.email,
-                password: this.state.loginForm.password
-            });
+        await axios.post(loginRoute, {
+            email: this.state.loginForm.email,
+            password: this.state.loginForm.password
+        }).then((response)=>{
             if(response.data.success && response.data.data){
                 const data = response.data.data;
                 cookies.set('userId', data._id, {path: "/"});
                 cookies.set('jwt', data.jwt, {path: "/"});
                 window.location.href="./posts";
             }else{
-                throw invalidLoginError;
+                throw errorMessage;
             }
-        } catch (error) {
-            alert(invalidLoginError);
-        }
+        }).catch((error)=>{
+            const message = error.response.data.message;
+            alert(errorMessage(message));
+        });
     }
 
     signInRequest = async()=>{
@@ -71,11 +75,11 @@ class Login extends Component {
                 const data = response.data.data;
                 alert(`Success!! registered email: ${data.email}`);
             }else{
-                throw invalidSingInError;
+                throw errorMessage;
             }
         }).catch((error)=>{
             const message = error.response.data.message;
-            alert(invalidSingInError(message));
+            alert(errorMessage(message));
         });
     }
 
@@ -117,7 +121,9 @@ class Login extends Component {
                             onChange={this.handleRegisterChange}
                         />
                         <br />
-                        <button className="btn btn-primary" onClick={()=> this.signInRequest()}>SignIn</button>
+                        <button className="btn btn-primary" onClick={()=> this.signInRequest()}>
+                            Sing In <FontAwesomeIcon icon={faSignInAlt} />
+                        </button>
                     </div>
                     <div className="col-md-2"></div>
                     <div className="col-md-5 form-group form">
@@ -139,7 +145,9 @@ class Login extends Component {
                         onChange={this.handleLoginChange}
                         />
                         <br />
-                        <button className="btn btn-primary" onClick={()=> this.loginRequest()}>Login</button>
+                        <button className="btn btn-primary" onClick={()=> this.loginRequest()}>
+                            Login <FontAwesomeIcon icon={faHome} />
+                        </button>
                     </div>
                 </div>
             </div>
