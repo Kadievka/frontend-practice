@@ -8,7 +8,10 @@ function CircularProgressInCenter(){
             "left": "50%",
             "top": "50%",
         }}>
-            <CircularProgress />
+            <CircularProgress style={{
+                "width": "80px",
+                "height": "80px"
+            }}/>
         </div>
     );
 }
