@@ -37,9 +37,9 @@ class Header extends Component {
 
     render() {
         return (
-            <nav className="navbar navbar-light bg-light">
+            <nav className="nav-bar-color navbar navbar-light">
                 <div className="navbar-brand">
-                    Welcome to your dashboard
+                    <h2 className="welcome-message">Welcome to your dashboard</h2>
                 </div>
                 <div className="navbar-toggler">
                 <button className="btn btn-info buttons-nav-bar" onClick={()=>this.goToPhotos()}>
@@ -48,7 +48,7 @@ class Header extends Component {
                 <button className="btn btn-info buttons-nav-bar" onClick={()=>this.goToPosts()}>
                     Posts <FontAwesomeIcon icon={faNewspaper} />
                 </button>
-                <button className="btn btn-primary" onClick={()=>this.logout()}>
+                <button className="btn btn-primary buttons-nav-bar" onClick={()=>this.logout()}>
                     Logout <FontAwesomeIcon icon={faSignOutAlt} />
                 </button>
                 </div>
