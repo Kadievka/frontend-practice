@@ -79,8 +79,8 @@ class Login extends Component {
     render(){
         return (
             <div className="mainContainer">
-                <div className="secondContainer row container">
-                    <div className="backgroundImage col-md-7"></div>
+                <div className="secondContainer row container-fluid">
+                    <div className="backgroundImage col-md-7 img-fluid"></div>
                     <div className="form-group form col-md-4 col-sm-12">
                         <label className="label-login">Email: </label>
                         <br />
@@ -109,12 +109,14 @@ class Login extends Component {
                             onChange={this.handleChange}
                         />
                         <br />
-                        <div className="list-group-horizontal">
-                            <button className="btn btn-primary shadow-login" style={{"marginRight": "1em"}} onClick={()=> this.signInRequest()}>
-                                Sing Up <FontAwesomeIcon icon={faSignInAlt} />
-                            </button>
-                            <button className="btn btn-primary shadow-login" onClick={()=> this.loginRequest()}>
+                        <div className="list-group-horizontal container-fluid row">
+                            <div className="col-md-2"></div>
+                            <button className="btn btn-primary shadow-login col-md-4 col-sm-12" onClick={()=> this.loginRequest()}>
                                 Login <FontAwesomeIcon icon={faHome} />
+                            </button>
+                            <div className="col-md-1"></div>
+                            <button className="btn btn-primary shadow-login col-md-4 col-sm-12" onClick={()=> this.signInRequest()}>
+                                Sing Up <FontAwesomeIcon icon={faSignInAlt} />
                             </button>
                         </div>
                     </div>
