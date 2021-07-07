@@ -4,6 +4,7 @@ import apiConstants from "../constants/apiConstants";
 import 'bootstrap/dist/css/bootstrap.css';
 import PhotoCard from './PhotoCard';
 import Pagination from '@material-ui/lab/Pagination';
+import '../css/Photos.css';
 
 const photosError = new Error('Can not get photos');
 
@@ -50,25 +51,27 @@ function PhotosPagination(props) {
     return(
         <div className="row d-flex justify-content-center">
             <Pagination 
-            style={
-                {
-                    width: "100%",
-                    marginTop: "2em",
-                    marginBottom: "2em",
-                    display: "flex",
-                    justifyContent: "center",
+                style={
+                    {
+                        width: "100%",
+                        marginTop: "2em",
+                        marginBottom: "2em",
+                        display: "flex",
+                        justifyContent: "center",
+                    }
                 }
-            }
                 count= {data.pages}
                 page= {data.page}
                 onChange={(e, currentPage) => handleClick(currentPage)}
                 size="large"
             />
-            {
-                data.docs.map(photo=>(
-                    <PhotoCard photo={photo} key={photo._id} />
-                ))
-            }
+            <div className="photos-page">
+                {
+                    data.docs.map(photo=>(
+                        <PhotoCard photo={photo} key={photo._id} />
+                    ))
+                }
+            </div>
         </div>
     )
 
