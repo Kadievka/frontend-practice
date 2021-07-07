@@ -12,10 +12,10 @@
     font-family: Georgia, 'Times New Roman', Times, serif, serif;
     font-weight: bolder;
     margin-left: 2em;
-    color: rgb(0, 36, 53);
-    background-color: rgb(72, 170, 216);
+    color: rgb(204, 222, 255);
+    background: rgb(72, 170, 216) url("./blue-background.jpg") repeat center;
     padding: 10px;
     border-radius: 5px;
-    text-shadow:  2px 2px 2px rgb(255, 255, 255);
+    text-shadow:  2px 2px 2px rgb(0, 0, 0);
     box-shadow: 2px 2px 5px rgb(255, 255, 255), 4px 4px 10px rgb(72, 170, 216), 6px 6px 20px rgb(0, 0, 0);
 }
