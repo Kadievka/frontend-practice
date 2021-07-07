@@ -5,6 +5,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 import PhotoCard from './PhotoCard';
 import Pagination from '@material-ui/lab/Pagination';
 import '../css/Photos.css';
+import CircularProgressInCenter from './CircularProgressInCenter';
 
 const photosError = new Error('Can not get photos');
 
@@ -16,7 +17,7 @@ function PhotosPagination(props) {
 
     const getPhotosUrl = `${apiConstants.API_URL}${apiConstants.PHOTOS}?page=${pageNumber}`;
 
-    const [data, setPhotos] = useState({
+    const [photos, setPhotos] = useState({
         docs: [],
         total: 0,
         pages: 0,
@@ -26,26 +27,31 @@ function PhotosPagination(props) {
 
     useEffect(() => {
         const getPhotosRequest = async()=>{
-            try {
-                const response = await axios.get(getPhotosUrl, {
-                    headers: {
-                        authorization: `${apiConstants.BEARER} ${jwt}`
-                    },
-                });
-                if(response.data.success && response.data.data){
-                    setPhotos(response.data.data);
-                }else{
-                    throw photosError;
-                }
-            } catch (error) {
+            await axios.get(getPhotosUrl, {
+                headers: {
+                    authorization: `${apiConstants.BEARER} ${jwt}`
+                },
+            }).then(response=>{
+                setPhotos(response.data.data);
+            }).catch((error)=>{
                 alert(photosError);
-            }
+            });
         }
         getPhotosRequest();
     }, [getPhotosUrl, jwt]);
 
     const handleClick = (currentPage)=>{
         window.location.href=`/photos/page/${currentPage}`;
+    }
+
+    const loadPhotos = ()=>{
+        if(photos.docs.length){
+            return photos.docs.map(photo=>(
+                <PhotoCard photo={photo} key={photo._id} />
+            ))
+        }else{
+            return <CircularProgressInCenter />
+        }
     }
 
     return(
@@ -60,18 +66,12 @@ function PhotosPagination(props) {
                         justifyContent: "center",
                     }
                 }
-                count= {data.pages}
-                page= {data.page}
+                count= {photos.pages}
+                page= {photos.page}
                 onChange={(e, currentPage) => handleClick(currentPage)}
                 size="large"
             />
-            <div className="photos-page">
-                {
-                    data.docs.map(photo=>(
-                        <PhotoCard photo={photo} key={photo._id} />
-                    ))
-                }
-            </div>
+            <div className="photos-page">{loadPhotos()}</div>
         </div>
     )
 
