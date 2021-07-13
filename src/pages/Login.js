@@ -116,7 +116,7 @@ class Login extends Component {
                             </button>
                             <div className="col-md-1"></div>
                             <button className="btn btn-primary shadow-login col-md-4 col-sm-12" onClick={()=> this.signInRequest()}>
-                                Sing Up <FontAwesomeIcon icon={faSignInAlt} />
+                                Sign Up <FontAwesomeIcon icon={faSignInAlt} />
                             </button>
                         </div>
                     </div>
