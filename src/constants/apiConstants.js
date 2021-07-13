@@ -1,5 +1,5 @@
 const apiConstants = {
-    API_URL: "https://polar-citadel-72385.herokuapp.com",
+    API_URL: "http://localhost:4000",
     USER: "/user",
     LOGIN: "/login",
     POSTS: "/posts",

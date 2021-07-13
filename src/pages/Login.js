@@ -80,44 +80,45 @@ class Login extends Component {
         return (
             <div className="mainContainer">
                 <div className="secondContainer row container-fluid">
-                    <div className="backgroundImage col-md-7 img-fluid"></div>
-                    <div className="form-group form col-md-4 col-sm-12">
-                        <label className="label-login">Email: </label>
-                        <br />
-                        <input
-                            type="text"
-                            className="form-control shadow-login"
-                            name="email"
-                            onChange={this.handleChange}
-                        />
-                        <br />
-                        <label className="label-login">Password: </label>
-                        <br />
-                        <input
-                            type="password"
-                            className="form-control shadow-login"
-                            name="password"
-                            onChange={this.handleChange}
-                        />
-                        <br />
-                        <label className="label-login">Confirm Password (Sign Up): </label>
-                        <br />
-                        <input
-                            type="password"
-                            className="form-control shadow-login"
-                            name="confirmPassword"
-                            onChange={this.handleChange}
-                        />
-                        <br />
-                        <div className="list-group-horizontal container-fluid row">
-                            <div className="col-md-2"></div>
-                            <button className="btn btn-primary shadow-login col-md-4 col-sm-12" onClick={()=> this.loginRequest()}>
-                                Login <FontAwesomeIcon icon={faHome} />
-                            </button>
-                            <div className="col-md-1"></div>
-                            <button className="btn btn-primary shadow-login col-md-4 col-sm-12" onClick={()=> this.signInRequest()}>
-                                Sign Up <FontAwesomeIcon icon={faSignInAlt} />
-                            </button>
+                    <div className="form-group form" style={{"width": "50vw"}}>
+                        <div style={{"marginLeft": "10vw", "marginRight": "10vw"}}>
+                            <label className="label-login">Email: </label>
+                            <br />
+                            <input
+                                type="text"
+                                className="form-control shadow-login"
+                                name="email"
+                                onChange={this.handleChange}
+                            />
+                            <br />
+                            <label className="label-login">Password: </label>
+                            <br />
+                            <input
+                                type="password"
+                                className="form-control shadow-login"
+                                name="password"
+                                onChange={this.handleChange}
+                            />
+                            <br />
+                            <label className="label-login">Confirm Password (Sign Up): </label>
+                            <br />
+                            <input
+                                type="password"
+                                className="form-control shadow-login"
+                                name="confirmPassword"
+                                onChange={this.handleChange}
+                            />
+                            <br />
+                            <div className="list-group-horizontal container-fluid row">
+                                <div className="col-md-2"></div>
+                                <button className="btn btn-primary shadow-login col-md-4 col-sm-12" onClick={()=> this.loginRequest()}>
+                                    Login <FontAwesomeIcon icon={faHome} />
+                                </button>
+                                <div className="col-md-1"></div>
+                                <button className="btn btn-primary shadow-login col-md-4 col-sm-12" onClick={()=> this.signInRequest()}>
+                                    Sign Up <FontAwesomeIcon icon={faSignInAlt} />
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>
