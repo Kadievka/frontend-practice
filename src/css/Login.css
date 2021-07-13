@@ -16,9 +16,9 @@
     justify-content: center;
 }
 
-.form{
+.form-private-class{
     background-color: rgba(255, 255, 255, 0.20);
-    height: 50vh;
+    min-height: 50vh;
     align-self: center;
     color: mintcream;
     font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
@@ -31,5 +31,11 @@
 
 .shadow-login {
     box-shadow: 2px 2px 10px #000000;
+}
+
+@media(max-width: 600px){
+    .form-private-class{
+        min-width: 100vw;
+    }
 }
 

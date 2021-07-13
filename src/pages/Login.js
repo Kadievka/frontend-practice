@@ -80,8 +80,8 @@ class Login extends Component {
         return (
             <div className="mainContainer">
                 <div className="secondContainer row container-fluid">
-                    <div className="form-group form" style={{"width": "50vw"}}>
-                        <div style={{"marginLeft": "10vw", "marginRight": "10vw"}}>
+                    <div className="form-group form-private-class" style={{"width": "50vw"}}>
+                        <div style={{"marginLeft": "10vw", "marginRight": "10vw", "marginBottom": "5px"}}>
                             <label className="label-login">Email: </label>
                             <br />
                             <input
