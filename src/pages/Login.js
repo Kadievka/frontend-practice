@@ -79,46 +79,42 @@ class Login extends Component {
     render(){
         return (
             <div className="mainContainer">
-                <div className="secondContainer row container-fluid">
-                    <div className="form-group form-private-class" style={{"width": "50vw"}}>
-                        <div style={{"marginLeft": "10vw", "marginRight": "10vw", "marginBottom": "5px"}}>
-                            <label className="label-login">Email: </label>
-                            <br />
-                            <input
-                                type="text"
-                                className="form-control shadow-login"
-                                name="email"
-                                onChange={this.handleChange}
-                            />
-                            <br />
-                            <label className="label-login">Password: </label>
-                            <br />
-                            <input
-                                type="password"
-                                className="form-control shadow-login"
-                                name="password"
-                                onChange={this.handleChange}
-                            />
-                            <br />
-                            <label className="label-login">Confirm Password (Sign Up): </label>
-                            <br />
-                            <input
-                                type="password"
-                                className="form-control shadow-login"
-                                name="confirmPassword"
-                                onChange={this.handleChange}
-                            />
-                            <br />
-                            <div className="list-group-horizontal container-fluid row">
-                                <div className="col-md-2"></div>
-                                <button className="btn btn-primary shadow-login col-md-4 col-sm-12" onClick={()=> this.loginRequest()}>
-                                    Login <FontAwesomeIcon icon={faHome} />
-                                </button>
-                                <div className="col-md-1"></div>
-                                <button className="btn btn-primary shadow-login col-md-4 col-sm-12" onClick={()=> this.signInRequest()}>
-                                    Sign Up <FontAwesomeIcon icon={faSignInAlt} />
-                                </button>
-                            </div>
+                <div className="form-group form-private-class">
+                    <div>
+                        <label className="label-login">Email: </label>
+                        <br />
+                        <input
+                            type="text"
+                            className="form-control input-with-shadow"
+                            name="email"
+                            onChange={this.handleChange}
+                        />
+                        <br />
+                        <label className="label-login">Password: </label>
+                        <br />
+                        <input
+                            type="password"
+                            className="form-control input-with-shadow"
+                            name="password"
+                            onChange={this.handleChange}
+                        />
+                        <br />
+                        <label className="label-login">Confirm Password (Sign Up): </label>
+                        <br />
+                        <input
+                            type="password"
+                            className="form-control input-with-shadow"
+                            name="confirmPassword"
+                            onChange={this.handleChange}
+                        />
+                        <br />
+                        <div className="list-group-horizontal">
+                            <button className="btn btn-primary input-with-shadow send-request-button" onClick={()=> this.loginRequest()}>
+                                Login <FontAwesomeIcon icon={faHome} />
+                            </button>
+                            <button className="btn btn-primary input-with-shadow send-request-button" onClick={()=> this.signInRequest()}>
+                                Sign Up <FontAwesomeIcon icon={faSignInAlt} />
+                            </button>
                         </div>
                     </div>
                 </div>
