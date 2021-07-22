@@ -1,0 +1,27 @@
+.not-found-page{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(51, 49, 49);
+}
+
+.not-found-message{
+  color: red;
+}
+
+.enjoy-text{
+  font-family: 'Fleftex', sans-serif;
+  font-weight: 600;
+  animation: color-change 1s infinite;
+}
+
+.go-to-home-text{
+  margin: 10px;
+}
+
+@keyframes color-change {
+  0% { color: rgb(43, 255, 0); }
+  50% { color: blue; }
+  100% { color: rgb(43, 255, 0); }
+}
